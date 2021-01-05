@@ -55,7 +55,7 @@ if(isset($_POST['btn'])){
 			border-radius: 4px;
 			margin-top: 5px;
 		}
-		.err{
+		.show_err{
 			border-color: red;
 		}
 
@@ -74,9 +74,6 @@ if(isset($_POST['btn'])){
 		var erraddress=document.getElementById('erraddress');
 		var errpass=document.getElementById('errpass');
 
-		
-
-		
 		var name = name.value.trim();
 		var email = email.value.trim();
 		var phone = phone.value.trim();
@@ -88,6 +85,12 @@ if(isset($_POST['btn'])){
 		var flagphone=false;
 		var flagaddress=false;
 		var flagpass=false;
+
+		var showerror=document.getElementsByClassName('show_err');
+		var i;
+		for (var i = 0; i < showerror.length; i++) {
+			showerror[i].innerHTML="";
+		}
 
 
 
@@ -143,20 +146,20 @@ if(isset($_POST['btn'])){
 	<h2><?php echo $error; ?></h2>
 	<form method="POST" onsubmit="return java()">
 		<input type="text" name="name" placeholder="Name" id="name"><br>
-		<span id="errname" class="err" style="color:red "></span>
+		<span id="errname" class="show_err" style="color:red "></span>
 		<br>
 		<input type="email" name="email" placeholder="Email" id="email"><br>
-		<span id="erremail" class="err" style="color:red "></span>
+		<span id="erremail" class="show_err" style="color:red "></span>
 		<br>
 		<input type="tel" name="phone_no" placeholder="Phone" id="phone"><br>
-		<span id="errphone" class="err" style="color:red "></span>
+		<span id="errphone" class="show_err" style="color:red "></span>
 		<br>
 		<input type="text" name="address" placeholder="Address" id="address"><br>
 		
-		<span id="erraddress" class="err" style="color:red "></span>
+		<span id="erraddress" class="show_err" style="color:red "></span>
 		<br>
 		<input type="password" name="pass" placeholder="Password" id="pass"><br>
-		<span id="errpass" class="err" style="color:red "></span>
+		<span id="errpass" class="show_err" style="color:red "></span>
 		<br>
 		<br>
 		<button class="button1" type="submit" name="btn">Register</button>
