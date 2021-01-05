@@ -1,10 +1,10 @@
 <?php 
 	$module=$action ="";
 	if (isset($_GET['module'])) {
-		$modules=$_GET['module'];
+		$module=$_GET['module'];
 		}
 	if (isset($_GET['action'])) {
-		$actions=$_GET['action'];
+		$action=$_GET['action'];
 		}
  		if($module=="" || $action=="") {
  			$module="common";
