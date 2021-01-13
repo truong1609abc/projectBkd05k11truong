@@ -53,6 +53,9 @@
 			width: 100px;
 
 		}
+		.show_err{
+			border-color: red;
+		}
 	</style>
 	<script type="text/javascript">
 		function java(){
@@ -61,6 +64,14 @@
 
 			var pass=document.getElementById('pass');
 			var errorpass=document.getElementById('errorpass');
+
+			var showerror=document.getElementsByClassName('show_err');
+			var i;
+			for (var i = 0; i < showerror.length; i++) {
+				showerror[i].innerHTML="";
+			}
+
+
 
 			var email =email.value.trim();
 			var pass=pass.value.trim();
@@ -93,13 +104,13 @@
 		<?php echo $error; ?>
 		 <h1 style="color: skyblue;font-size:50px;">Đăng Nhập</h1>
 		<form method="POST" onsubmit=" return java()">
-       	<input type="text" name="email" id="email"  placeholder="Nhập Email:">
+       	<input type="email" name="email" id="email"  placeholder="Nhập Email:">
        	<br>
-       	<span id="errorname" style="color: red;"></span>
+       	<span id="errorname" class="show_err" style="color: red;"></span>
        	<br>
        	<input type="password" name="pass" id="pass" placeholder="Nhập Mật Khẩu:">
        	<br>
-       	<span id="errorpass" style="color: red;"></span>
+       	<span id="errorpass" class="show_err" style="color: red;"></span>
        	<br>
        	<button type="submit" name="btn">Đăng Nhập</button>
        	<br>

@@ -8,7 +8,7 @@
 		}
  		if($module=="" || $action=="") {
  			$module="common";
- 			$action="login";
+ 			$action="home";
  		}
 		
 		$path= "modules/$module/$action.php";
