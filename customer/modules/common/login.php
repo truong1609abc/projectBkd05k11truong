@@ -4,7 +4,7 @@
 		$email =$_POST['email'];
 		$pass =md5($_POST['pass']);
 
-		$sql ="SELECT id,name FROM customer WHERE email='$email' AND pass ='$pass'";
+		$sql ="SELECT id_customer,name FROM customer WHERE email='$email' AND pass ='$pass'";
 		$result = mysqli_query($conn,$sql);
 		if ($result==false) {
 			$error=mysqli_error($conn);
@@ -31,31 +31,46 @@
 	<style>
 		#container{
 			width: 500px;
-			height: 500px;
+			height: 450px;
 			border: 1px solid black;
-			border-radius: 3px;
+			border-radius: 7px;
 			margin: auto;
 			border-collapse: collapse;
 			text-align: center;
-			margin-top: 100px;
+			margin-top: 200px;
+			background-color: #F8F8FF5D;
 
 		}
 		input{
 			margin-top: 40px;
 			width: 300px;
 			height: 20px;
-			border-radius: 2px;
+			border-radius: 6px;
 
 		}
 		button{
 			margin-top: 30px;
 			height: 30px;
 			width: 100px;
+			border-radius: 4px;
+			border:2px;
 
+		}
+		body{
+			background-image: url(images/logo5.png);
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+		#dangki a{
+			text-decoration: none;
+		}
+		#dangki a:hover{
+			color: green;
 		}
 		.show_err{
 			border-color: red;
 		}
+
 	</style>
 	<script type="text/javascript">
 		function java(){
@@ -114,8 +129,7 @@
        	<br>
        	<button type="submit" name="btn">Đăng Nhập</button>
        	<br>
-       	<br>
-			<a href="index.php?module=common&action=register">Dang ki</a>
+      	<button id="dangki"><a href="index.php?module=common&action=register">Đăng kí</a></button>
        </form>
    </div>
 </body>

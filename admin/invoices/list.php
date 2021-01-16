@@ -1,5 +1,5 @@
 <?php 
-	$title="danh sach san pham" ;
+	$title="danh sach hoadon" ;
 	require_once ("layout/header.php");
  ?>
 <div>

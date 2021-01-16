@@ -29,7 +29,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Login</title>
 	<style type="text/css">
-		
 		#container{
 			width: 500px;
 			height: 400px;
@@ -38,8 +37,8 @@
 			margin: auto;
 			border-collapse: collapse;
 			text-align: center;
-			margin-top: 100px;
-			background-color: #F8F8FF5D;
+			margin-top: 200px;
+			background-color: #CFCFCF4D;
 
 		}
 		input{
@@ -51,15 +50,18 @@
 		}
 		button{
 			margin-top: 30px;
-			height: 30px;
+			height: 40px;
 			width: 100px;
 			border-radius: 4px;
+			font-size: 16px;
 
 		}
 		body{
 			background-image: url(images/logo5.png);
 			background-size: cover;
 			background-repeat: no-repeat;
+			box-sizing: border-box;
+
 		}
 		.show_err{
 			border-color: red;
