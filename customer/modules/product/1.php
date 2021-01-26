@@ -1,55 +1,23 @@
 <?php 
-    $sql="SELECT id,name,image,price,mota FROM products";
+    $sql="SELECT id,name,image,price,mota FROM products WHERE id_type='3'";
 
     if (isset($_GET['keyword'])) {
         $keyword=$_GET['keyword'];
-        $sql=$sql." WHERE name LIKE '%$keyword%' ";
+        $sql=$sql." AND name LIKE '%$keyword%' ";
     }
+
+
+
     $result=mysqli_query($conn,$sql);
     if ($result==false) {
         $error="Error: ".mysqli_error($conn);
         mysqli_close($conn);
         die($error);
     }
+
+
 ?>
-<?php 
-	$sql="SELECT id,name,image,price,mota FROM products";
-		if(isset($_GET['page'])){
-			$page = $_GET['page'];
-		}
-		else{
-			$page = 1;
-		}
 
-
-		$tong_sp = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(id) as 'tong_sp' FROM `products`"))['tong_sp'];
-		$limit = 8;
-		$tong_so_trang = ceil($tong_sp/$limit);
-
-
-		if($page > $tong_so_trang){
-			$page = $tong_so_trang;
-		}
-
-		if($page < 1){
-			$page = 1;
-		}
-
-
-		$offset = ($page - 1)* $limit;
-
-
-		$sql = $sql." LIMIT $offset,$limit";
-
-
-	$result=mysqli_query($conn,$sql);
-	if ($result==false) {
-		$error =mysqli_error($conn);
-		mysqli_close($conn);
-		die("Thoat");
-	}
-
- ?>
 
 
 
@@ -120,23 +88,6 @@ require_once("layout/header.php");
 			text-decoration: none;
 			color: black;
 		}
-		.item1{
-			width: 450px;
-			height: 250px;
-			text-align: center;
-			margin: 200px;
-
-		}
-		.item1:hover{
-			box-shadow: 5px 10px 18px black;
-		}
-		.item1:hover b{
-			font-size: larger;
-			color:green;
-		}
-		.item1:hover img{
-			width: 350px;
-		}
 
 
 </style>
@@ -148,11 +99,7 @@ require_once("layout/header.php");
         <input type="text" name="keyword" placeholder="Bạn cần tìm gì?">
         <button type="submit">Tìm kiếm</button>
     </form>
-    <br>
-    <a href="index.php?module=product&action=list&page=<?php if($page > 1) {echo ($page-1);} else echo $page; ?>">Previous</a>
-    <b><?php echo $page; ?></b>
-    <a href="index.php?module=product&action=list&page=<?php if($page < $tong_so_trang) {echo ($page+1);} else echo $page; ?>">Next</a>
-    <table id="table">
+    <table>
         <?php 
             $total=mysqli_num_rows($result);
             if (isset($keyword)) {
@@ -164,20 +111,23 @@ require_once("layout/header.php");
                 echo "<tr>";
                     while ($row=mysqli_fetch_assoc($result)) {
                         $count++;
-                        echo "<td class='item1'>";
-                        	$id=$row['id'];
+                        echo "<td class='item'>";
+                            $id=$row['id'];
                             $image=$row['image'];
                             $name=$row['name'];
+                            $url=$row['image'];
                             $price=$row['price'];
                             $mota=$row['mota'];
                             echo "<a href='index.php?module=product&action=product_details&id=$id'>";
-                            echo "<img src='$image' width='80%'><br>";
+                            echo "<img src='$url' width='180px'><br>";
+                            echo "</a>";
                             echo "<b>".$row['name']."</b><br>";
                             echo "<b style='color:red'>".$row['price']."</b><br>";
-                            echo "</a>";
+
 
                         echo "</td>";
-                        if ($count%4==0) break;   
+                        if ($count%4==0) break;
+                            
                     }
                 echo "</tr>";
             }

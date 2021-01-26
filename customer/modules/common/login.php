@@ -13,7 +13,7 @@
 				$row =mysqli_fetch_assoc($result);
 				$_SESSION['admin']['id'] =$row['id'];
 				$_SESSION['admin']['name']=$row['name'];
-				header("Location:index.php?module=product&action=list");
+				header("Location:index.php?module=common&action=home");
 			}
 			else{
 				$error="Thong tin tai khoan ko chinh xac";
@@ -38,7 +38,7 @@
 			border-collapse: collapse;
 			text-align: center;
 			margin-top: 200px;
-			background-color: #F8F8FF5D;
+			background-color: #F8F8FF4D;
 
 		}
 		input{

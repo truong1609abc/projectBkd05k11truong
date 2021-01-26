@@ -57,6 +57,7 @@
 
 		}
 		body{
+			width: 100%;
 			background-image: url(images/logo5.png);
 			background-size: cover;
 			background-repeat: no-repeat;
