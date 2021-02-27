@@ -127,9 +127,16 @@ $(document).ready(function(){
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<?php 
-				if (isset($_SESSION['admin'])) {
-					echo "<li><h3 style='float:right;margin-right:10px;margin-top:10px;color:white;'>".$_SESSION['admin']['name']."</h3></li>";
-					echo "<li><a href='index.php?module=common&action=logout' >Log out</a></li>";
+				if (isset($_SESSION['customer'])) {
+					echo "<li><h3 style='float:right;margin-right:10px;margin-top:10px;color:white;'>".$_SESSION['customer']['name']."</h3></li>";
+					echo "<li class='dropdown'>";
+						echo "<a href='' class='dropdown-toggle'  data-toggle='dropdown'><span class='glyphicon glyphicon-cog'></span>Cài Đặt<span class='caret'></a>";
+							echo "<ul class='dropdown-menu'>";
+								echo "<li><a href='index.php?module=common&action=ifcus'>Thôn tin người dùng</a></li>";
+								echo "<li><a href='index.php?module=common&action=doimatkhau'>Đổi Mật Khẩu</a></li>";
+								echo "<li><a href='index.php?module=common&action=logout'>Đăng Xuất</a></li>";
+							echo "</ul>";
+					echo "<li>";                                              
 				}
 			 ?>
 				<li><a href=""><span class="glyphicon glyphicon-edit"></span>Đăng ký</a></li>

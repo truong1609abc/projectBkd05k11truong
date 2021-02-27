@@ -11,6 +11,7 @@
 	else{
 		if(mysqli_affected_rows($conn) > 0){
 			$row = mysqli_fetch_assoc($result);
+			$id=$row['id'];
 			$name = $row['name'];
 			$price=$row['price'];
 			$mota=$row['mota'];
@@ -52,8 +53,13 @@ require_once("layout/header.php");
 			width: 250px;
 			height: 10vh;
 			line-height: 10vh;
-			background-color: #3366CC4D;
-			border-radius: 30px;
+			border: 2px solid white;
+			border-radius: 20px;
+			outline: none;
+			font-size: 20px;
+			font-family: 'Courier';
+			margin-left: 20px;
+
 		}
 		#main-menu1 a{
 			display: block;
@@ -61,15 +67,17 @@ require_once("layout/header.php");
 			text-decoration: none;
 			-webkit-transition-duration: 0.4s; 
   			transition-duration: 0.4s;
-  			color: black;
+  			color: #EEEEEE;
 		}
 		#main-menu1 a:hover{
-			color:red;
+			color:black;
 			background-color: white;
+		 	border-radius: 17px;
 		}
 		#main-menu1 a:active{
 			color:#66FF33;
 			background-color: white;
+			border-radius: 17px;
 		}
 		#main-menu1 li{
 			position: relative;
@@ -96,12 +104,17 @@ require_once("layout/header.php");
 		#left{
 			float: left;
 			margin-top: 30px;
-			margin-left: 250px;
+			margin-left: 120px;
+			color: red;
+			width: 900px;
+			height: 400px;
+			border: 1px solid white ;
+			text-align: center;
+			font-size: 30px;
 		}
 
 </style>
-<img src="" alt="">
-	<div id="chitietsanpham">
+	<div id="chitietsanpham" style="z-index: 99999;">
 		<?php 
 		echo "<div id='image'>";
 			echo "<img src='$url' width='100%'>";
@@ -125,7 +138,8 @@ require_once("layout/header.php");
 
 			echo "</h3>";
 			echo "<h4>Mô tả món ăn:".$mota."</h4>";
-
+			echo "<br>";
+			echo "<a href='index.php?module=invoices&action=cart&id_product=$id'>Them vao gio hang</a>";
 		echo "</div>";
 		 ?>
 	</div>

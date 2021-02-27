@@ -21,25 +21,20 @@ if(isset($_POST['btn'])){
 
  ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Đăng kí</title>
-	<meta charset="utf-8">
+<?php 
+$title = "Đăng Ký";
+require_once("layout/header.php") ?>
 	<style type="text/css">
 		.container{
-			width: 450px;
-			height: 530px;
-			border: 1px #00FFFF solid;
+			width: 550px;
+			height: 550px;
+			border: 1px solid white ;
 			margin: auto;
-			padding: auto;
+			margin-top: 50px;
 			text-align: center;
-			margin-top: 130px;
-			background-color: white
-			border-radius:4px;
+			border-radius:20px;
 		}
 		.button1{
-  			background-color:skyblue; 
   			border-radius: 12px;
   			color: white;
   			padding: 10px 30px;
@@ -47,18 +42,58 @@ if(isset($_POST['btn'])){
   			text-decoration: none;
   			border-collapse: collapse;
   			display: inline-block;
- 			font-size: 12px;
+ 			font-size: 22px;
+ 			background-color: black;
+ 			outline: none;
 		}
 		input{
-			width: 200px;
-			height: 20px;
-			border-radius: 4px;
-			margin-top: 5px;
+			margin-top: 20px;
+			width: 300px;
+			height: 30px;
+			border-radius: 6px;
+
 		}
 		.show_err{
-			border-color: red;
+			color: red;
+			margin-top: 30px;
 		}
+		#main-menu1 ul{
+            list-style-type: none;
+        }
+        #main-menu1 li{
+            display: inline-block;
+            width: 250px;
+            height: 10vh;
+            line-height: 10vh;
+            border: 2px solid white;
+            border-radius: 20px;
+            outline: none;
+            font-size: 20px;
+            font-family: 'Courier';
+            margin-left: 20px;
 
+        }
+        #main-menu1 a{
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            -webkit-transition-duration: 0.4s; 
+            transition-duration: 0.4s;
+            color: #EEEEEE;
+        }
+        #main-menu1 a:hover{
+            color:black;
+            background-color: white;
+            border-radius: 17px;
+        }
+        #main-menu1 a:active{
+            color:#66FF33;
+            background-color: white;
+            border-radius: 17px;
+        }
+        #main-menu1 li{
+            position: relative;
+        }
 	</style>
 	<script type="text/javascript">
 		function java(){
@@ -95,34 +130,34 @@ if(isset($_POST['btn'])){
 
 
 		if (name=="") {
-			errname.innerHTML="Hay nhap ten!";
+			errname.innerHTML="Hãy Nhập Tên!";
 			flagname=false;
 		}else{
 			flagname=true;
 		}
 		if (email=="") {
-			erremail.innerHTML="Hay nhap email!";
+			erremail.innerHTML="Hãy Nhập Email!";
 			flagemail=false;
 		}else{
 			flagemail=true;
 		}
 
 		if (phone=="") {
-			errphone.innerHTML="Hay nhap so dien thoai!";
+			errphone.innerHTML="Hãy Nhập Số Điện Thoại!";
 			flagphone=false;
 		}else{
 			flagphone=true;
 		}
 
 		if (address=="") {
-			erraddress.innerHTML="Hay nhap dia chi!";
+			erraddress.innerHTML="Hãy Nhập Địa Chỉ!";
 			flagaddress=false;
 		}else{
 			flagaddress=true;
 		}
 
 		if (pass=="") {
-			errpass.innerHTML="Hay nhap mat khau!";
+			errpass.innerHTML="Hãy Nhập Mật Khẩu!";
 			flagpass=false;
 		}else{
 			flagpass=true;
@@ -142,28 +177,29 @@ if(isset($_POST['btn'])){
 </head>
 <body>
 	<div class="container">
-	<h1 style="color: #00FFFF">Đăng kí</h1>
+	<h1 style="color: white;margin-top: 50px; ">Đăng kí</h1>
 	<h2><?php echo $error; ?></h2>
 	<form method="POST" onsubmit="return java()">
-		<input type="text" name="name" placeholder="Name" id="name"><br>
-		<span id="errname" class="show_err" style="color:red "></span>
+		<input type="text" name="name" placeholder="Hãy nhập tên người dùng" id="name"><br>
+		<span id="errname" class="show_err" style="color:red;font-size: 15px; "></span>
 		<br>
-		<input type="email" name="email" placeholder="Email" id="email"><br>
-		<span id="erremail" class="show_err" style="color:red "></span>
+		<input type="email" name="email" placeholder="Hãy nhập Email người dùng" id="email"><br>
+		<span id="erremail" class="show_err" style="color:red;font-size: 15px; "></span>
 		<br>
-		<input type="tel" name="phone_no" placeholder="Phone" id="phone"><br>
-		<span id="errphone" class="show_err" style="color:red "></span>
+		<input type="tel" name="phone_no" placeholder="Hãy nhập số điện thoại" id="phone"><br>
+		<span id="errphone" class="show_err" style="color:red;font-size: 15px; "></span>
 		<br>
-		<input type="text" name="address" placeholder="Address" id="address"><br>
+		<input type="text" name="address" placeholder="Hãy nhập địa chỉ sử dụng" id="address"><br>
 		
-		<span id="erraddress" class="show_err" style="color:red "></span>
+		<span id="erraddress" class="show_err" style="color:red;font-size: 15px; "></span>
 		<br>
-		<input type="password" name="pass" placeholder="Password" id="pass"><br>
-		<span id="errpass" class="show_err" style="color:red "></span>
+		<input type="password" name="pass" placeholder="Nhập password bạn muốn sử dụng" id="pass"><br>
+		<span id="errpass" class="show_err" style="color:red;font-size: 15px; "></span>
 		<br>
 		<br>
-		<button class="button1" type="submit" name="btn">Register</button>
+		<button class="button1" type="submit" name="btn">Register</button></form>
 	</div>
-	</form>
-</body>
-</html>
+	
+
+
+<?php require_once("layout/footer.php") ?>

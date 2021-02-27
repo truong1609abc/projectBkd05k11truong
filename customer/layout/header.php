@@ -11,7 +11,7 @@
 	<style type="text/css">
 		#container{
 			width: 100%;
-			height: 100vh;
+			height: 100%;
 			background-color: white;
 			
 		}
@@ -42,10 +42,16 @@
 			
 		}
 		#content{
-			width: 100%;
-			height: 80vh;
-			background-color: white;
-			float: left;
+   			 height: 100%;
+	    		position: fixed;
+	    		top: 70px;
+	    		left: 0;
+			    right: 0;
+			   z-index: 0;
+  			 background-image: url(images/anhnencus1.jpg);
+   			 background-size: cover;
+   			 overflow: hidden;
+}
 		}
 		#main-menu ul{
 			list-style-type: none;
@@ -64,14 +70,6 @@
 			-webkit-transition-duration: 0.4s; 
   			transition-duration: 0.4s;
   			color: black;
-		}
-		#main-menu a:hover{
-			color:red;
-			background-color: white;
-		}
-		#main-menu a:active{
-			color:#66FF33;
-			background-color: white;
 		}
 		#main-menu li{
 			position: relative;
@@ -108,21 +106,13 @@
   			background-color: crimson;
   			color: white;
 		}
-		.wide {
-  			width:100%;
-  			height:750px;
- 			background-size:cover;
-				}
-
-			.wide img {
-		  width:100%;
-		  border-radius: 10px;
-
-		}
+		
 		.active{
-			background-color: red;
-			color: black;
-			border-radius: 20px;
+			background-color: black;
+			color: white;
+			font-size: 30px;
+			border-radius: 15px;
+			font-family: 'Courier';
 		}
 			</style>
 
@@ -134,19 +124,22 @@
 			<div class="navbar-header">
 				<a href="index.php?module=common&action=home" class="navbar-brand">KLC FOOD</a>
 			</div>
-			<ul class="nav navbar-nav">
-				<li><a href="#aboutus">Trang chu</a></li>
-				<li><a href="#doanphobien">Trang chu</a></li>
-				<li><a href="#mohinh">Trang chu</a></li>
-			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<?php 
-				if (isset($_SESSION['admin'])) {
-					echo "<li><h3 style='float:right;margin-right:10px;margin-top:10px;color:white;'>".$_SESSION['admin']['name']."</h3></li>";
-					echo "<li><a href='index.php?module=common&action=logout' >Log out</a></li>";
+				if (isset($_SESSION['customer'])) {
+					echo "<li><h3 style='float:right;margin-right:10px;margin-top:10px;color:white;'>".$_SESSION['customer']['name']."</h3></li>";
+					echo "<li class='dropdown'>";
+						echo "<a href='' class='dropdown-toggle'  data-toggle='dropdown'><span class='glyphicon glyphicon-cog'></span>Cài Đặt<span class='caret'></a>";
+							echo "<ul class='dropdown-menu'>";
+								echo "<li><a href='index.php?module=common&action=ifcus'>Thôn tin người dùng</a></li>";
+								echo "<li><a href='index.php?module=common&action=doimatkhau'>Đổi Mật Khẩu</a></li>";
+								echo "<li><a href='index.php?module=common&action=logout'>Đăng Xuất</a></li>";
+							echo "</ul>";
+					echo "<li>";
+
 				}
 			 ?>
-				<li><a href=""><span class="glyphicon glyphicon-edit"></span>Đăng ký</a></li>
+				<li><a href="index.php?module=common&action=register"><span class="glyphicon glyphicon-edit">Đăng ký</a></li>
 				<li class="dropdown">
 					<a href="" class="dropdown-toggle" data-toggle="dropdown">Đăng Nhập <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -154,29 +147,33 @@
 					<li><a href="../admin/index.php?module=common&action=login">Manager</a></li>
 					</ul>
 				</li>
+				<li>
+					<a href="index.php?module=invoices&action=cart">Giỏ hàng</a>
+				</li>
 			</ul>
 		</div>
 	</nav>
-		<div id="content">
-	<div id="main-menu1" style="margin-left: 60px;margin-top: 70px;">
+	<br>
+		<div id="content" style="position: fixed;top: 50px;">
+	<div id="main-menu1" style="margin-left:10px;margin-top:40px;">
 			<ul>
 				<li>
-					<a href="index.php?module=homepage&action=list"><b>TRANG CHỦ</b></a>
+					<a href="index.php?module=product&action=list" class="<?php if($action=='list') echo"active"; ?>"><b>Đồ Ăn Việt</b></a>
+				</li>
+				<li >
+					<a href="index.php?module=product&action=1" class="<?php if($action=='1') echo"active"; ?>"><b>Đồ Ăn Tây Âu</b></a>
 				</li>
 				<li>
-					<a href=""><b>GIỚI THIỆU</b></a>
+					<a href=""><b>Đồ Ăn Nhanh</b></a>
 				</li>
 				<li>
-					<a href="index.php?module=product&action=1" class="<?php if($action=='1') echo"active"; ?>"><b>Đồ ăn truyền thống</b></a>
+					<a href=""><b>Tráng Miệng</b></a>
 				</li>
 				<li>
-					<a href=""><b>Đồ ăn nhanh</b></a>
+					<a href=""><b>Đồ Uống</b></a>
 				</li>
-				<li>
-					<a href=""><b>Đồ ăn nhanh</b></a>
-				</li>
-				<li>
-					<a href=""><b>GIỎ HÀNG</b></a>
+				<li >
+					<a href="index.php?module=invoices&action=list2" class="<?php if($action=='list2') echo"active"; ?>"><b style="font-size: 19px;">Lịch Sử Mua Hàng</b></a>
 				</li>
 			</ul>
 		</div>

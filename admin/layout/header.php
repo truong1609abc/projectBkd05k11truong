@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin'])) {
 <head>
 	<title><?php echo $title ?></title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<style type="text/css">
 		*{
 			padding: 0px;
@@ -115,16 +115,19 @@ if (!isset($_SESSION['admin'])) {
 		<div class="main-menu">
 			<ul>
 				<li>
-					<a href="index.php?module=invoices&action=list"><i class="fas fa-file-invoice"></i> Quản lí hóa đơn</a>
+					<a href="index.php?module=invoices&action=list"><i class="fa fa-credit-card-alt"></i> Quản lí hóa đơn</a>
 				</li>
 				<li>
-					<a href="index.php?module=product&action=list"><i class="fab fa-product-hunt"> Quản lí sản phẩm</i></a>
+					<a href="index.php?module=product&action=list"><i class="fa fa-cart-plus"></i> Quản lí sản phẩm</i></a>
 				</li>
 				<li>
-					<a href="index.php?module=types&action=list"><i class="fab fa-codepen"></i> Quản lí loại</a>
+					<a href="index.php?module=types&action=list"><i class="fa fa-navicon"></i> Quản lí loại</a>
 				</li>
 				<li>
-					<a href="index.php?module=brands&action=list"><i class="fas fa-id-badge"></i> Quản lí thông tin khách hàng</a>
+					<a href="index.php?module=brands&action=list"><i class="fa fa-id-card"></i> Tài Khoản khách hàng</a>
+				</li>
+				<li>
+					<a href="index.php?module=brands&action=list"> <i class="fa fa-share-square"></i>Phản Hồi</a>
 				</li>
 			</ul>
 		</div>

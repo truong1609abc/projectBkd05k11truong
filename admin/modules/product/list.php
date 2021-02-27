@@ -87,10 +87,10 @@ require_once("layout/header.php") ?>
 				 			
 						echo "</td>";
 						echo "<td>";
-							echo "<a href='index.php?module=product&action=edit&id_product=$id_product'>Sửa</a>";
+							echo "<a href='index.php?module=product&action=edit&id=$id_product'>Sửa</a>";
 						echo "</td>";
 						echo "<td>";
-							echo "<a href='index.php?module=product&action=delete&id_product=$id_product'>Xóa</a>";
+							echo "<a href='index.php?module=product&action=delete&id=$id_product'>Xóa</a>";
 						echo "</td>";
 					echo "</tr>";
 				}

@@ -16,7 +16,7 @@
 			$mota=$row['mota'];
 			$status=$row['status'];
 			$url =$row['image'];
-			$type=$row['id_type'];
+			$idtype=$row['id_type'];
 
 
 		}
@@ -40,7 +40,7 @@
 
 			move_uploaded_file($_FILES['url']['tmp_name'],$url);
 		}
-		$sql="UPDATE  products SET name='$name',price='$price',mota='$mota',status='$status',image='$url',id_type='$type' WHERE id='$id' ";
+		$sql="UPDATE  products SET name='$name',price='$price',mota='$mota',status='$status',image='$url',id_type='$idtype' WHERE id='$id' ";
 		$result=mysqli_query($conn,$sql);
 
 		if ($result==false) {
@@ -125,13 +125,13 @@
  					 } 
  					 else if(mysqli_num_rows($result)>0){
  					 	foreach ($result as $row) {
- 					 		$id_type=$row['id_type'];
+ 					 		$idtype=$row['id_type'];
  					 		if ($id_type=$idtype) {
  					 			$selected="selected";
  					 		}else{
  					 			$selected="";
  					 		}
- 					 		echo "<option value='$id_type' $selected>".$row['name']."</option>";
+ 					 		echo "<option value='$idtype' $selected>".$row['name']."</option>";
  					 	}
  					 }
  				 ?>

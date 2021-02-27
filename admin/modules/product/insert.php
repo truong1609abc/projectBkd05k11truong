@@ -66,6 +66,7 @@
 			viewfood.src = url;
 		}
   	</script>
+  	<script type="text/javascript" src="../asset/ckeditor/ckeditor.js"></script>
  	<div class="insert">
  		<h1>Thêm sản phẩm</h1>
  		<form method="POST" enctype="multipart/form-data" style="margin-top: 30px;" >
@@ -117,7 +118,10 @@
  		<label style="margin-left: 250px;">
  			<b>Mô Tả:</b>
  			<br>
- 			<textarea name="mota" cols="50" rows="6" style="margin-left: 300px;"></textarea>
+ 			<textarea name="mota" cols="50" rows="6" style="margin-left: 300px;" id="thongtin"></textarea>
+ 			<script type="text/javascript">
+ 				 CKEDITOR.replace( 'thongtin' );
+ 			</script>
  		</label>
  		<br>
  		<button type="reset" style="margin-left:100px;">Reset</button>

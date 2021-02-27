@@ -11,8 +11,9 @@
 		}else{
 			if (mysqli_num_rows($result)==1) {
 				$row =mysqli_fetch_assoc($result);
-				$_SESSION['admin']['id'] =$row['id'];
-				$_SESSION['admin']['name']=$row['name'];
+				$_SESSION['customer']['id_customer'] = $row['id_customer'];
+				$_SESSION['customer']['name'] = $row['name'];
+				$_SESSION['customer']['pass'] = $row['pass'];
 				header("Location:index.php?module=common&action=home");
 			}
 			else{
@@ -22,29 +23,24 @@
 	}
 
  ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login</title>
+<?php 
+$title = "Đăng Nhập";
+require_once("layout/header.php") ?>
 	<style>
-		#container{
+		#head{
 			width: 500px;
 			height: 450px;
-			border: 1px solid black;
+			border: 1px solid white ;
 			border-radius: 7px;
 			margin: auto;
-			border-collapse: collapse;
 			text-align: center;
-			margin-top: 200px;
-			background-color: #F8F8FF4D;
+			margin-top: 100px;
 
 		}
 		input{
-			margin-top: 40px;
+			margin-top: 20px;
 			width: 300px;
-			height: 20px;
+			height: 30px;
 			border-radius: 6px;
 
 		}
@@ -56,11 +52,6 @@
 			border:2px;
 
 		}
-		body{
-			background-image: url(images/logo5.png);
-			background-size: cover;
-			background-repeat: no-repeat;
-		}
 		#dangki a{
 			text-decoration: none;
 		}
@@ -70,7 +61,43 @@
 		.show_err{
 			border-color: red;
 		}
+		#main-menu1 ul{
+            list-style-type: none;
+        }
+        #main-menu1 li{
+            display: inline-block;
+            width: 250px;
+            height: 10vh;
+            line-height: 10vh;
+            border: 2px solid white;
+            border-radius: 20px;
+            outline: none;
+            font-size: 20px;
+            font-family: 'Courier';
+            margin-left: 20px;
 
+        }
+        #main-menu1 a{
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            -webkit-transition-duration: 0.4s; 
+            transition-duration: 0.4s;
+            color: #EEEEEE;
+        }
+        #main-menu1 a:hover{
+            color:black;
+            background-color: white;
+            border-radius: 17px;
+        }
+        #main-menu1 a:active{
+            color:#66FF33;
+            background-color: white;
+            border-radius: 17px;
+        }
+        #main-menu1 li{
+            position: relative;
+        }
 	</style>
 	<script type="text/javascript">
 		function java(){
@@ -114,10 +141,9 @@
 
 	</script>
 </head>
-<body>
-	<div id="container">
+	<div id="head">
 		<?php echo $error; ?>
-		 <h1 style="color: skyblue;font-size:50px;">Đăng Nhập</h1>
+		 <h1 style="color: white ;font-size:50px;">Đăng Nhập</h1>
 		<form method="POST" onsubmit=" return java()">
        	<input type="email" name="email" id="email"  placeholder="Nhập Email:">
        	<br>
@@ -129,8 +155,9 @@
        	<br>
        	<button type="submit" name="btn">Đăng Nhập</button>
        	<br>
-      	<button id="dangki"><a href="index.php?module=common&action=register">Đăng kí</a></button>
+      	<h4 style="margin: 5%;color: white ;">
+      		Bạn Chưa Có Tài Khoản ?<a href="index.php?module=common&action=register">Đăng kí</a>
+      	</h4>
        </form>
    </div>
-</body>
-</html>
+<?php require_once("layout/footer.php") ?>
