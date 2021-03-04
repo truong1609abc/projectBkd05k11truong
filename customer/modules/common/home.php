@@ -1,4 +1,26 @@
+<?php 
+	if (isset($_POST['btn'])) {
+		$name=$_POST['name'];
+		$sodienthoai=$_POST['sodienthoai'];
+		$ykien=$_POST['ykien'];
+		
+		if (!isset($_SESSION['customer'])) {
+			die();
+			header('location:index.php?module=common&action=login');
+		}else{
+			$id=$_SESSION['customer']['id_customer'];
+			$sql="INSERT INTO phanhoi VALUES (NULL,'$name',current_timestamp(),'$sodienthoai','$ykien','$id')";
+			$result=mysqli_query($conn,$sql);
 
+		if ($result==false) {
+			echo "ERROR".mysqli_error($conn);
+		}else{
+			header("Location:index.php?module=common&action=home");
+		}
+	}
+}
+	
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,6 +134,11 @@ $(document).ready(function(){
   	}
   
   </style>
+  <script type="text/javascript">
+	function OrderConfirm(){
+		return confirm ("Bạn có chắc chắn bạn muốn gửi phản hồi và quay về trang chủ!");
+	}
+</script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -128,18 +155,26 @@ $(document).ready(function(){
 			<ul class="nav navbar-nav navbar-right">
 				<?php 
 				if (isset($_SESSION['customer'])) {
-					echo "<li><h3 style='float:right;margin-right:10px;margin-top:10px;color:white;'>".$_SESSION['customer']['name']."</h3></li>";
-					echo "<li class='dropdown'>";
-						echo "<a href='' class='dropdown-toggle'  data-toggle='dropdown'><span class='glyphicon glyphicon-cog'></span>Cài Đặt<span class='caret'></a>";
-							echo "<ul class='dropdown-menu'>";
-								echo "<li><a href='index.php?module=common&action=ifcus'>Thôn tin người dùng</a></li>";
-								echo "<li><a href='index.php?module=common&action=doimatkhau'>Đổi Mật Khẩu</a></li>";
-								echo "<li><a href='index.php?module=common&action=logout'>Đăng Xuất</a></li>";
-							echo "</ul>";
-					echo "<li>";                                              
+					?>
+					<li><h3 style="float:right;margin-right:10px;margin-top:10px;color:white;"><?php echo $_SESSION['customer']['name'] ?></h3></li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle"  data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>Cài Đặt<span class="caret"></a>
+							<ul class="dropdown-menu">
+								<li><a href="index.php?module=invoices&action=list2">Lịch sử mua hàng</a></li>
+								<li><a href="index.php?module=common&action=ifcus">Thôn tin người dùng</a></li>
+								<li><a href="index.php?module=common&action=home&id=#contact">Phản Hồi</a></li>
+								<li><a href="index.php?module=common&action=doimatkhau">Đổi Mật Khẩu</a></li>
+								<li><a href="index.php?module=common&action=logout">Đăng Xuất</a></li>
+							</ul>
+				 <li>                                            
+				<?php 
 				}
-			 ?>
-				<li><a href=""><span class="glyphicon glyphicon-edit"></span>Đăng ký</a></li>
+				 ?>
+				<?php 
+					if (!isset($_SESSION['customer'])) {
+					
+				 ?>
+				<li><a href="index.php?module=common&action=register"><span class="glyphicon glyphicon-edit"></span>Đăng ký</a></li>
 				<li class="dropdown">
 					<a href="" class="dropdown-toggle" data-toggle="dropdown">Đăng Nhập <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -148,6 +183,9 @@ $(document).ready(function(){
 					</ul>
 				</li>
 			</ul>
+			<?php 
+				}
+			 ?>
 		</div>
 	</nav>
 	<div class="wide">
@@ -266,8 +304,7 @@ $(document).ready(function(){
     		</div>
     	</div>
     </div>	
-    <div class="container-fluid bg-grey" id="quymo">
-    	<br>	
+    <div class="container-fluid bg-grey" id="quymo">	
     	<br>	
     	<h1 align="center">Quy Mô</h1>
     		<div style="width: 100%;height: 30%">
@@ -285,6 +322,7 @@ $(document).ready(function(){
     	</div>
     </div>
     <div class="container-fluid bg-grey" id="contact">
+    	<br>
     	<div style="width:100%">
     	<h1 align="center">Contact</h1>
     	<div id="div1" style="width:40%;float: left;text-align: center; ">
@@ -295,22 +333,22 @@ $(document).ready(function(){
       		<p><span class="glyphicon glyphicon-envelope"></span> Younowwereare2@gmail.com</p></label>
       		<br>	
       		<div>
-      				<form>
+      				<form method="POST" enctype="multipart/form-data">
     		<label >
     			<input type="text" placeholder="Tên:" required="" name="name" style="width: 190px;">
     		</label>
     		<br>	
     		<br>	
     		<label>
-    			<input type="email" placeholder=" Email:" required="" name="email" style="width: 300px;">
+    			<input type="number" placeholder="Số Điện Thoại:" required="" name="sodienthoai" style="width: 300px;">
     		</label>
     		<br>
     		<label>
-    		<textarea placeholder="Ý kiến của bạn" rows="5" cols="70" style="margin-top: 30px;"></textarea>
+    		<textarea placeholder="Ý kiến của bạn" rows="5" cols="70" name="ykien" style="margin-top: 30px;"></textarea>
     		</label>
     		<br>
     		<label >
-    		<button style="float: left;font-size: 20px;">Gửi</button></label>
+    		<button style="float: left;font-size: 20px;" type="submit" name="btn" onclick='return OrderConfirm()'>Gửi</button></label>
     	</form>
       		</div>
     	</div>

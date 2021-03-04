@@ -42,12 +42,12 @@
 			
 		}
 		#content{
-   			 height: 100%;
-	    		position: fixed;
-	    		top: 70px;
-	    		left: 0;
-			    right: 0;
-			   z-index: 0;
+   			height: 100%;
+	    	position: fixed;
+	    	top: 70px;
+	    	left: 0;
+			 right: 0;
+			 z-index: 0;
   			 background-image: url(images/anhnencus1.jpg);
    			 background-size: cover;
    			 overflow: hidden;
@@ -127,19 +127,26 @@
 			<ul class="nav navbar-nav navbar-right">
 				<?php 
 				if (isset($_SESSION['customer'])) {
-					echo "<li><h3 style='float:right;margin-right:10px;margin-top:10px;color:white;'>".$_SESSION['customer']['name']."</h3></li>";
-					echo "<li class='dropdown'>";
-						echo "<a href='' class='dropdown-toggle'  data-toggle='dropdown'><span class='glyphicon glyphicon-cog'></span>Cài Đặt<span class='caret'></a>";
-							echo "<ul class='dropdown-menu'>";
-								echo "<li><a href='index.php?module=common&action=ifcus'>Thôn tin người dùng</a></li>";
-								echo "<li><a href='index.php?module=common&action=doimatkhau'>Đổi Mật Khẩu</a></li>";
-								echo "<li><a href='index.php?module=common&action=logout'>Đăng Xuất</a></li>";
-							echo "</ul>";
-					echo "<li>";
-
+					?>
+					<li><h3 style="float:right;margin-right:10px;margin-top:10px;color:white;"><?php echo $_SESSION['customer']['name'] ?></h3></li>
+					<li class="dropdown">
+						<a href="" class="dropdown-toggle"  data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>Cài Đặt<span class="caret"></a>
+							<ul class="dropdown-menu">
+								<li><a href="index.php?module=invoices&action=list2">Lịch sử mua hàng</a></li>
+								<li><a href="index.php?module=common&action=ifcus">Thôn tin người dùng</a></li>
+								<li><a href="index.php?module=common&action=home&id=#contact">Phản Hồi</a></li>
+								<li><a href="index.php?module=common&action=doimatkhau">Đổi Mật Khẩu</a></li>
+								<li><a href="index.php?module=common&action=logout">Đăng Xuất</a></li>
+							</ul>
+				 <li>                                            
+				<?php 
 				}
-			 ?>
-				<li><a href="index.php?module=common&action=register"><span class="glyphicon glyphicon-edit">Đăng ký</a></li>
+				 ?>
+				<?php 
+					if (!isset($_SESSION['customer'])) {
+					
+				 ?>
+				<li><a href=""><span class="glyphicon glyphicon-edit"></span>Đăng ký</a></li>
 				<li class="dropdown">
 					<a href="" class="dropdown-toggle" data-toggle="dropdown">Đăng Nhập <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -147,10 +154,10 @@
 					<li><a href="../admin/index.php?module=common&action=login">Manager</a></li>
 					</ul>
 				</li>
-				<li>
-					<a href="index.php?module=invoices&action=cart">Giỏ hàng</a>
-				</li>
 			</ul>
+			<?php 
+				}
+			 ?>
 		</div>
 	</nav>
 	<br>
@@ -171,9 +178,6 @@
 				</li>
 				<li>
 					<a href=""><b>Đồ Uống</b></a>
-				</li>
-				<li >
-					<a href="index.php?module=invoices&action=list2" class="<?php if($action=='list2') echo"active"; ?>"><b style="font-size: 19px;">Lịch Sử Mua Hàng</b></a>
 				</li>
 			</ul>
 		</div>

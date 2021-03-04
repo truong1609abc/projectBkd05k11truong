@@ -1,6 +1,41 @@
 <?php 
+	$keyword="";
+	$sql="SELECT id,name,price,status,image FROM products";
+			if (isset($_GET['btn'])) {
+		        $keyword=$_GET['keyword'];
+		        $sql="SELECT id,name,price,status,image FROM products WHERE  name LIKE '%$keyword%'";
+		    }
+		     if(isset($_GET['page'])){
+					$page = $_GET['page'];
+				}
+				else{
+					$page = 1;
+				}
+
+
+				$tong_sp = mysqli_fetch_assoc(mysqli_query($conn,"SELECT COUNT(id) as 'tong_sp' FROM products"))['tong_sp'];
+				$limit = 4;
+				$tong_so_trang = ceil($tong_sp/$limit);
+
+
+				if($page > $tong_so_trang){
+					$page = $tong_so_trang;
+				}
+
+				if($page < 1){
+					$page = 1;
+				}
+
+
+				$offset = ($page - 1)* $limit;
+
+
+				$sql = $sql." LIMIT $offset,$limit";
+				$result=mysqli_query($conn,$sql);
+ ?>
+<?php 
 $title = "Danh sách sản phẩm";
- 
+
 require_once("layout/header.php") ?>
 <style type="text/css">
 	.list-products{
@@ -36,9 +71,16 @@ require_once("layout/header.php") ?>
   	}
 </style>
 
-
 <div class="list-products">
 	<button class="button1"><a class="a1" href="index.php?module=product&action=insert"><i class="fas fa-plus-circle"></i>Thêm Sản Phẩm</a></button><br><br>
+<div class="list_1">
+    <form style="margin-top:10px;" method="GET">
+        <input type="hidden" name="module" value="product">
+        <input type="hidden" name="action" value="list">
+        <input type="text" style="width:100px;border-radius:5px;outline: none;"  name="keyword" placeholder="Bạn cần tìm gì?" value="<?php if(isset($keyword)) echo $keyword; ?>">
+        <button type="submit" style="width: 100px;border-radius:5px;outline: none;background-color: #0066994D;color:white;" name="btn">Tìm kiếm</button>
+    </form>
+</div>
 	<table>
 		<tr>
 			<th>ID</th>
@@ -48,8 +90,6 @@ require_once("layout/header.php") ?>
 			<th colspan="2">Action</th>
 		</tr>
 		<?php 
-			$sql="SELECT id,name,price,status,image FROM products";
-			$result=mysqli_query($conn,$sql);
 			if ($result==false) {
 				echo "Error: ".mysqli_error($conn);
 			}
@@ -101,6 +141,13 @@ require_once("layout/header.php") ?>
 
 
 	</table>
+	<button style="margin-left: 40%">
+  <a href="index.php?module=product&action=list&keyword= <?php echo $keyword; ?>&page=<?php if($page > 1) {echo ($page-1);} else echo $page; ?>">Trang Trước</a>
+  		</button>
+    <b style="color: black ;font-size: 20px;"><?php echo $page; ?></b>
+
+    <button>
+    <a href="index.php?module=product&action=list&keyword=<?php echo $keyword; ?>&page=<?php if($page < $tong_so_trang) {echo ($page+1);} else echo $page; ?>">Trang Tiếp Theo</a>	</button>
 </div>
 
 

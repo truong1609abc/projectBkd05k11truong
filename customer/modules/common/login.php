@@ -13,7 +13,6 @@
 				$row =mysqli_fetch_assoc($result);
 				$_SESSION['customer']['id_customer'] = $row['id_customer'];
 				$_SESSION['customer']['name'] = $row['name'];
-				$_SESSION['customer']['pass'] = $row['pass'];
 				header("Location:index.php?module=common&action=home");
 			}
 			else{
@@ -62,42 +61,51 @@ require_once("layout/header.php") ?>
 			border-color: red;
 		}
 		#main-menu1 ul{
-            list-style-type: none;
-        }
-        #main-menu1 li{
-            display: inline-block;
-            width: 250px;
-            height: 10vh;
-            line-height: 10vh;
-            border: 2px solid white;
-            border-radius: 20px;
-            outline: none;
-            font-size: 20px;
-            font-family: 'Courier';
-            margin-left: 20px;
+			list-style-type: none;
+		}
+		#main-menu1 li{
+			display: inline-block;
+			width: 17%;
+			height: 9vh;
+			line-height: 10vh;
+			border: 2px solid white;
+			border-radius: 20px;
+			outline: none;
+			font-size: 20px;
+			font-family: 'Courier';
+			margin-left: 30px;
 
-        }
-        #main-menu1 a{
-            display: block;
-            text-align: center;
-            text-decoration: none;
-            -webkit-transition-duration: 0.4s; 
-            transition-duration: 0.4s;
-            color: #EEEEEE;
-        }
-        #main-menu1 a:hover{
-            color:black;
-            background-color: white;
-            border-radius: 17px;
-        }
-        #main-menu1 a:active{
-            color:#66FF33;
-            background-color: white;
-            border-radius: 17px;
-        }
-        #main-menu1 li{
-            position: relative;
-        }
+		}
+		#main-menu1 a{
+			display: block;
+			text-align: center;
+			text-decoration: none;
+			-webkit-transition-duration: 0.4s; 
+  			transition-duration: 0.4s;
+  			color: #EEEEEE;
+		}
+		#main-menu1 a:hover{
+			color:black;
+			background-color: white;
+		 	border-radius: 17px;
+		}
+		#main-menu1 a:active{
+			color:#66FF33;
+			background-color: white;
+			border-radius: 17px;
+		}
+		#main-menu1 li{
+			position: relative;
+		}
+		.sub-menu{
+			z-index: 9999;
+			display: none;
+			position: absolute;
+		}
+		#main-menu1 li:hover .sub-menu{
+			display: block;
+
+		}
 	</style>
 	<script type="text/javascript">
 		function java(){
