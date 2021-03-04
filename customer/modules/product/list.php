@@ -72,15 +72,15 @@ require_once("layout/header.php");
 		}
 		#main-menu1 li{
 			display: inline-block;
-			width: 250px;
-			height: 10vh;
+			width: 17%;
+			height: 9vh;
 			line-height: 10vh;
 			border: 2px solid white;
 			border-radius: 20px;
 			outline: none;
 			font-size: 20px;
 			font-family: 'Courier';
-			margin-left: 20px;
+			margin-left: 30px;
 
 		}
 		#main-menu1 a{
@@ -118,8 +118,8 @@ require_once("layout/header.php");
 			color: black;
 		}
 		.item1{
-			width: 430px;
-			height: 330px;
+			width: 280px;
+			height: 230px;
 			text-align: center;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 			border-radius: 15px;
 			border: 2px solid white ;
@@ -141,12 +141,9 @@ require_once("layout/header.php");
 			margin: 0px;
 		}
 </style>
-  <a  href="index.php?module=product&action=list&keyword= <?php echo $keyword; ?>&page=<?php if($page > 1) {echo ($page-1);} else echo $page; ?>">Previous</a>
-    <b style="color: white ;"><?php echo $page; ?></b>
-    <a href="index.php?module=product&action=list&keyword=<?php echo $keyword; ?>&page=<?php if($page < $tong_so_trang) {echo ($page+1);} else echo $page; ?>">Next</a>
 <div class="list_1">
 
-    <form style="margin-top:50px;" method="GET">
+    <form style="margin-top:10px;" method="GET">
         <input type="hidden" name="module" value="product">
         <input type="hidden" name="action" value="list">
         <input type="text" style="width:500px;border-radius:5px;outline: none;"  name="keyword" placeholder="Bạn cần tìm gì?">
@@ -157,8 +154,7 @@ require_once("layout/header.php");
         <?php 
             $total=mysqli_num_rows($result);
             if ($keyword!="") {
-
-                echo "<h2 style='color:red'>Có tất cả $total kết quả cho: $keyword </h2>";
+                echo "<h4 style='color:white;text-align:center;'>Có tất cả $total kết quả cho: $keyword </h4>";
             }
             $count=0;
             $n= 4;
@@ -192,7 +188,17 @@ require_once("layout/header.php");
     </table>
 </div>
  <br>
-    <a st href="index.php?module=product&action=list&keyword=$keyword&page=<?php if($page > 1) {echo ($page-1);} else echo $page; ?>">Previous</a>
-    <b><?php echo $page; ?></b>
-    <a href="index.php?module=product&action=list&keyword=$keyword&page=<?php if($page < $tong_so_trang) {echo ($page+1);} else echo $page; ?>">Next</a>
+ 	<?php 
+ 		if ($keyword=="") {
+ 	 ?>
+ 		<button style="margin-left: 40%">
+  <a href="index.php?module=product&action=list&keyword= <?php echo $keyword; ?>&page=<?php if($page > 1) {echo ($page-1);} else echo $page; ?>">Trang Trước</a>
+  		</button>
+    <b style="color: white ;font-size: 20px;"><?php echo $page; ?></b>
+
+    <button>
+    <a href="index.php?module=product&action=list&keyword=<?php echo $keyword; ?>&page=<?php if($page < $tong_so_trang) {echo ($page+1);} else echo $page; ?>">Trang Tiếp Theo</a>	</button>
+ 	<?php 
+ 		}
+ 	 ?>
  <?php require_once("layout/footer.php") ?>

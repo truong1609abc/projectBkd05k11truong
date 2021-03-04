@@ -44,15 +44,15 @@ require_once("layout/header.php");
         }
         #main-menu1 li{
             display: inline-block;
-            width: 250px;
-            height: 10vh;
+            width: 17%;
+            height: 9vh;
             line-height: 10vh;
             border: 2px solid white;
             border-radius: 20px;
             outline: none;
             font-size: 20px;
             font-family: 'Courier';
-            margin-left: 20px;
+            margin-left: 30px;
 
         }
         #main-menu1 a{
@@ -90,8 +90,8 @@ require_once("layout/header.php");
             color: black;
         }
         .item1{
-            width: 430px;
-            height: 330px;
+            width: 280px;
+            height: 230px;
             text-align: center;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             border-radius: 15px;
             border: 2px solid white ;
